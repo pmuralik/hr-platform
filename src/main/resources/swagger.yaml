@@ -1,0 +1,127 @@
+openapi: 3.0.1
+info:
+  title: hr-platform
+  description: hr-platform work workmotion
+  version: '0.1'
+servers:
+  - url: http://127.0.0.1:8181
+paths:
+  /hr-platform/employee:
+    post:
+      description: API to Create a New Employee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                employeeName:
+                  type: string
+                contactNumber:
+                  type: string
+                age:
+                  type: integer
+            examples:
+              '0':
+                value: "{\r\n    \"employeeName\": \"RAMANA\",\r\n    \"contactNumber\": \"9030120841\",\r\n    \"age\": 45\r\n}"
+      responses:
+        '201':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  employeeName:
+                    type: string
+                  contactNumber:
+                    type: string
+                  id:
+                    type: integer
+                  employeeState:
+                    type: string
+                  age:
+                    type: integer
+              examples:
+                '0':
+                  value: >-
+                    {"id":4,"employeeState":"ADDED","employeeName":"RAMANA","contactNumber":"9030120841","age":45}
+      servers:
+        - url: http://127.0.0.1:8181
+    servers:
+      - url: http://127.0.0.1:8181
+  /hr-platform/employee/{employeeId}:
+    get:
+      description: API to get the complete details of given Employee ID
+      parameters:
+        - name: "employeeId"
+          in: "path"
+          required: true
+          description: "The unique employeeID"
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  employeeName:
+                    type: string
+                  contactNumber:
+                    type: string
+                  id:
+                    type: integer
+                  employeeState:
+                    type: string
+                  age:
+                    type: integer
+              examples:
+                '0':
+                  value: >-
+                    {"id":2,"employeeState":"ADDED","employeeName":"SRIDHAR","contactNumber":"9030120841","age":45}
+
+      servers:
+        - url: http://127.0.0.1:8181
+    servers:
+      - url: http://127.0.0.1:8181
+  /hr-platform/employee/state-change:
+    put:
+      description: API to change state of Given Employee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                targetState:
+                  type: string
+                employeeId:
+                  type: string
+            examples:
+              '0':
+                value: "{\r\n    \"employeeId\": \"1\",\r\n    \"targetState\": \"APPROVED\"\r\n}"
+              '1':
+                value: "{\r\n    \"employeeId\": \"1\",\r\n    \"targetState\": \"IN_CHECK\"\r\n}"
+      responses:
+        '200':
+          description: Auto generated using Swagger Inspector
+          content:
+            text/plain;charset=UTF-8:
+              schema:
+                type: string
+              examples: {}
+        '400':
+          description: Auto generated using Swagger Inspector
+          content:
+            text/plain;charset=UTF-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: http://127.0.0.1:8181
+    servers:
+      - url: http://127.0.0.1:8181
